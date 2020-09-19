@@ -18,7 +18,7 @@ Many of the methods took inspirations from the Python SQLite3 library.
 SQLite3
 
 ### Documentation
-See ./docs/html/index.html
+See [Link](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
 
 ### Demo
     cmake CMakeLists.txt
