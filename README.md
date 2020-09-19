@@ -3,8 +3,8 @@
 A modern headers only SQLite3 wrapper implemented in C++
 
 ### About
-This headers only library aims to provide an simple and intuitive interface for the C SQLite3 library.
-Many of the methods took inspirations from the Python SQLite3 library.
+This headers only library aims to provide an simple and intuitive interface for the SQLite3 C library.
+Many of the methods took inspirations from the Python SQLite3 library. 
 
 ### Install
 1. Download directory lib
