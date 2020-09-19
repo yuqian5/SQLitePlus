@@ -1,0 +1,186 @@
+\hypertarget{class_s_q_l_i_t_e3}{}\doxysection{S\+Q\+L\+I\+T\+E3 Class Reference}
+\label{class_s_q_l_i_t_e3}\index{SQLITE3@{SQLITE3}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3_a50eda89405eaa859ffa806faf0cd9b72}{S\+Q\+L\+I\+T\+E3}} (const std\+::string \&db\+\_\+name=\char`\"{}\char`\"{})
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3_a1c30feab664663234e37c591818663aa}{S\+Q\+L\+I\+T\+E3}} (const \mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} \&)=delete
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} \& \mbox{\hyperlink{class_s_q_l_i_t_e3_a256ba51fe08327eb2d6a51743fe90d11}{operator=}} (const \mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} \&)=delete
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3_a78717eac1085edcd9e41ffef3d1e2142}{$\sim$\+S\+Q\+L\+I\+T\+E3}} ()
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_a4e2a47ed9e0e539ea097801636d32052}{open}} (std\+::string \&db\+\_\+name)
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_ab7123297406d994515230ed2c4d83de1}{commit}} ()
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_a975a034feae9efa78bdd4bf8aae5f1fd}{execute}} (\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&query)
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_ac44100d24a875743b3bdca4ef7e34a88}{execute}} (std\+::string \&query)
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_ae69c724fe071209c30eee7024cffc410}{execute}} (const char $\ast$query)
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_acdf2da094d4d762aa80f8e9d4cdc86fa}{get\+\_\+result\+\_\+row\+\_\+count}} ()
+\item 
+std\+::vector$<$ S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR $>$ $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}{get\+\_\+result}} ()
+\item 
+void \mbox{\hyperlink{class_s_q_l_i_t_e3_a211f94f2ec000e277393e7f4d8788536}{print\+\_\+result}} ()
+\item 
+sqlite3 $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}{get\+DB}} ()
+\item 
+void \mbox{\hyperlink{class_s_q_l_i_t_e3_ade33ea2b9cdc0657914b436bad409ccd}{perror}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a087ba3778a365e919ed441998179acb9}\label{class_s_q_l_i_t_e3_a087ba3778a365e919ed441998179acb9}} 
+char {\bfseries error\+\_\+no}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a50eda89405eaa859ffa806faf0cd9b72}\label{class_s_q_l_i_t_e3_a50eda89405eaa859ffa806faf0cd9b72}} 
+\index{SQLITE3@{SQLITE3}!SQLITE3@{SQLITE3}}
+\index{SQLITE3@{SQLITE3}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{SQLITE3()}{SQLITE3()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+::\+S\+Q\+L\+I\+T\+E3 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{db\+\_\+name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em db\+\_\+name} & name of database to open \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a1c30feab664663234e37c591818663aa}\label{class_s_q_l_i_t_e3_a1c30feab664663234e37c591818663aa}} 
+\index{SQLITE3@{SQLITE3}!SQLITE3@{SQLITE3}}
+\index{SQLITE3@{SQLITE3}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{SQLITE3()}{SQLITE3()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+::\+S\+Q\+L\+I\+T\+E3 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+Non-\/construction-\/copyable \mbox{\Hypertarget{class_s_q_l_i_t_e3_a78717eac1085edcd9e41ffef3d1e2142}\label{class_s_q_l_i_t_e3_a78717eac1085edcd9e41ffef3d1e2142}} 
+\index{SQLITE3@{SQLITE3}!````~SQLITE3@{$\sim$SQLITE3}}
+\index{````~SQLITE3@{$\sim$SQLITE3}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{$\sim$SQLITE3()}{~SQLITE3()}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+::$\sim$\+S\+Q\+L\+I\+T\+E3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_ab7123297406d994515230ed2c4d83de1}\label{class_s_q_l_i_t_e3_ab7123297406d994515230ed2c4d83de1}} 
+\index{SQLITE3@{SQLITE3}!commit@{commit}}
+\index{commit@{commit}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::commit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Commit all change to database, then start a new transaction \begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_ae69c724fe071209c30eee7024cffc410}\label{class_s_q_l_i_t_e3_ae69c724fe071209c30eee7024cffc410}} 
+\index{SQLITE3@{SQLITE3}!execute@{execute}}
+\index{execute@{execute}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::execute (\begin{DoxyParamCaption}\item[{const char $\ast$}]{query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Execute query 
+\begin{DoxyParams}{Parameters}
+{\em query} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a975a034feae9efa78bdd4bf8aae5f1fd}\label{class_s_q_l_i_t_e3_a975a034feae9efa78bdd4bf8aae5f1fd}} 
+\index{SQLITE3@{SQLITE3}!execute@{execute}}
+\index{execute@{execute}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&}]{query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Execute query 
+\begin{DoxyParams}{Parameters}
+{\em query} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_ac44100d24a875743b3bdca4ef7e34a88}\label{class_s_q_l_i_t_e3_ac44100d24a875743b3bdca4ef7e34a88}} 
+\index{SQLITE3@{SQLITE3}!execute@{execute}}
+\index{execute@{execute}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::execute (\begin{DoxyParamCaption}\item[{std\+::string \&}]{query }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Execute query 
+\begin{DoxyParams}{Parameters}
+{\em query} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}\label{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}} 
+\index{SQLITE3@{SQLITE3}!get\_result@{get\_result}}
+\index{get\_result@{get\_result}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{get\_result()}{get\_result()}}
+{\footnotesize\ttfamily std\+::vector$<$S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR$>$$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+\_\+result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the result of a query \begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_acdf2da094d4d762aa80f8e9d4cdc86fa}\label{class_s_q_l_i_t_e3_acdf2da094d4d762aa80f8e9d4cdc86fa}} 
+\index{SQLITE3@{SQLITE3}!get\_result\_row\_count@{get\_result\_row\_count}}
+\index{get\_result\_row\_count@{get\_result\_row\_count}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{get\_result\_row\_count()}{get\_result\_row\_count()}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::get\+\_\+result\+\_\+row\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the number of rows the \begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}\label{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}} 
+\index{SQLITE3@{SQLITE3}!getDB@{getDB}}
+\index{getDB@{getDB}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{getDB()}{getDB()}}
+{\footnotesize\ttfamily sqlite3$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get sqlite3 pointer, allowing user to expand the functions of S\+Q\+Lite \begin{DoxyReturn}{Returns}
+db 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a4e2a47ed9e0e539ea097801636d32052}\label{class_s_q_l_i_t_e3_a4e2a47ed9e0e539ea097801636d32052}} 
+\index{SQLITE3@{SQLITE3}!open@{open}}
+\index{open@{open}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::open (\begin{DoxyParamCaption}\item[{std\+::string \&}]{db\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Connect to db named db\+\_\+name 
+\begin{DoxyParams}{Parameters}
+{\em db\+\_\+name} & name of the database to open \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a256ba51fe08327eb2d6a51743fe90d11}\label{class_s_q_l_i_t_e3_a256ba51fe08327eb2d6a51743fe90d11}} 
+\index{SQLITE3@{SQLITE3}!operator=@{operator=}}
+\index{operator=@{operator=}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}}\& S\+Q\+L\+I\+T\+E3\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+Non-\/copyable \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_s_q_l_i_t_e3}{S\+Q\+L\+I\+T\+E3}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_ade33ea2b9cdc0657914b436bad409ccd}\label{class_s_q_l_i_t_e3_ade33ea2b9cdc0657914b436bad409ccd}} 
+\index{SQLITE3@{SQLITE3}!perror@{perror}}
+\index{perror@{perror}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{perror()}{perror()}}
+{\footnotesize\ttfamily void S\+Q\+L\+I\+T\+E3\+::perror (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Read the class wide error\+\_\+no and print parsed error to std\+::cerr \mbox{\Hypertarget{class_s_q_l_i_t_e3_a211f94f2ec000e277393e7f4d8788536}\label{class_s_q_l_i_t_e3_a211f94f2ec000e277393e7f4d8788536}} 
+\index{SQLITE3@{SQLITE3}!print\_result@{print\_result}}
+\index{print\_result@{print\_result}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{print\_result()}{print\_result()}}
+{\footnotesize\ttfamily void S\+Q\+L\+I\+T\+E3\+::print\+\_\+result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Print out result of statement 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/S\+Q\+L\+I\+T\+E3.\+hpp\end{DoxyCompactItemize}

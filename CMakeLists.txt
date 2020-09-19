@@ -1,0 +1,26 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.17)
+PROJECT(SQLitePlusDemo)
+
+SET(CMAKE_CXX_STANDARD 11)
+
+# set compile flag
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra")
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+
+# default build type, release
+IF (NOT CMAKE_BUILD_TYPE)
+    SET(CMAKE_BUILD_TYPE "Release")
+ENDIF (NOT CMAKE_BUILD_TYPE)
+
+# find dependency
+FIND_PACKAGE(SQLite3 REQUIRED)
+
+# include library
+INCLUDE_DIRECTORIES(./include)
+
+# add executables
+ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp)
+
+# link libraries
+TARGET_LINK_LIBRARIES(SQLitePlusDemo LINK_PUBLIC ${SQLite3_LIBRARIES})
+

@@ -1,0 +1,163 @@
+\hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y}{}\doxysection{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY Class Reference}
+\label{class_s_q_l_i_t_e3___q_u_e_r_y}\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_adbee039420f86fbda41309dd294be227}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} (std\+::string query\+\_\+template=\char`\"{}\char`\"{})
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_ab6a0397f6137d480fa404eb957733465}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} (const \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&rhs)
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \& \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_ade5a3423f44bfde59733da41a5731136}{operator=}} (const \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&rhs)
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_a1f2e441b598decc2c4b5492787fc391d}{$\sim$\+S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} ()=default
+\item 
+void \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_a6d99ebd73c718573e95c75a85cbedd08}{add\+\_\+binding}} (const std\+::string \&str)
+\item 
+{\footnotesize template$<$typename S\+T\+R\+I\+NG , typename ... S\+T\+R\+I\+N\+GS$>$ }\\void \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_a57de72a97b352fe0c33b2116e680500b}{add\+\_\+binding}} (S\+T\+R\+I\+NG b, S\+T\+R\+I\+N\+GS ... bs)
+\item 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a584ff56ef64b8f04dedc6f559dbb8cfb}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a584ff56ef64b8f04dedc6f559dbb8cfb}} 
+void {\bfseries add\+\_\+binding} ()
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \& \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_acca5a7aeb2749265903b9a6411a058e2}{bind}} ()
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \& \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_ac28a68985cd0d37436e6885d9a19dd62}{reset\+\_\+binding}} ()
+\item 
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \& \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y_a2616fd7f7e5f3862c7f506ae30cdca3f}{set\+\_\+query\+\_\+template}} (std\+::string q\+\_\+template)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a4d029fbd1be5159ce73a1e71a0d8fc1a}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a4d029fbd1be5159ce73a1e71a0d8fc1a}} 
+std\+::string {\bfseries query\+\_\+template}
+\item 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a8b9119fb9f2498c25af8cd3281f80fcc}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a8b9119fb9f2498c25af8cd3281f80fcc}} 
+std\+::string {\bfseries bound\+\_\+query}
+\item 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a2e791c9651078ff20008f2603873ad56}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a2e791c9651078ff20008f2603873ad56}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries binding}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_adbee039420f86fbda41309dd294be227}\label{class_s_q_l_i_t_e3___q_u_e_r_y_adbee039420f86fbda41309dd294be227}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{SQLITE3\_QUERY()}{SQLITE3\_QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::\+S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY (\begin{DoxyParamCaption}\item[{std\+::string}]{query\+\_\+template = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+constructor 
+\begin{DoxyParams}{Parameters}
+{\em query\+\_\+template} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_ab6a0397f6137d480fa404eb957733465}\label{class_s_q_l_i_t_e3___q_u_e_r_y_ab6a0397f6137d480fa404eb957733465}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{SQLITE3\_QUERY()}{SQLITE3\_QUERY()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::\+S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy Constructor 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a1f2e441b598decc2c4b5492787fc391d}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a1f2e441b598decc2c4b5492787fc391d}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!````~SQLITE3\_QUERY@{$\sim$SQLITE3\_QUERY}}
+\index{````~SQLITE3\_QUERY@{$\sim$SQLITE3\_QUERY}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{$\sim$SQLITE3\_QUERY()}{~SQLITE3\_QUERY()}}
+{\footnotesize\ttfamily S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::$\sim$\+S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a6d99ebd73c718573e95c75a85cbedd08}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a6d99ebd73c718573e95c75a85cbedd08}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!add\_binding@{add\_binding}}
+\index{add\_binding@{add\_binding}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{add\_binding()}{add\_binding()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::add\+\_\+binding (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a new string to the binding vector 
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a57de72a97b352fe0c33b2116e680500b}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a57de72a97b352fe0c33b2116e680500b}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!add\_binding@{add\_binding}}
+\index{add\_binding@{add\_binding}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{add\_binding()}{add\_binding()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename S\+T\+R\+I\+NG , typename ... S\+T\+R\+I\+N\+GS$>$ \\
+void S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::add\+\_\+binding (\begin{DoxyParamCaption}\item[{S\+T\+R\+I\+NG}]{b,  }\item[{S\+T\+R\+I\+N\+GS ...}]{bs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add all new string to the binding vector 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S\+T\+R\+I\+NG} & string \\
+\hline
+{\em S\+T\+R\+I\+N\+GS} & string pack \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & binding \\
+\hline
+{\em bs} & binding pack \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_acca5a7aeb2749265903b9a6411a058e2}\label{class_s_q_l_i_t_e3___q_u_e_r_y_acca5a7aeb2749265903b9a6411a058e2}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!bind@{bind}}
+\index{bind@{bind}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}}\& S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replace all ? in query\+\_\+template with corresponding strings in binding \begin{DoxyReturn}{Returns}
+constructed query 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_ade5a3423f44bfde59733da41a5731136}\label{class_s_q_l_i_t_e3___q_u_e_r_y_ade5a3423f44bfde59733da41a5731136}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!operator=@{operator=}}
+\index{operator=@{operator=}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}}\& S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy Assignment 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_ac28a68985cd0d37436e6885d9a19dd62}\label{class_s_q_l_i_t_e3___q_u_e_r_y_ac28a68985cd0d37436e6885d9a19dd62}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!reset\_binding@{reset\_binding}}
+\index{reset\_binding@{reset\_binding}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{reset\_binding()}{reset\_binding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}}\& S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::reset\+\_\+binding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Delete all elements from binding \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3___q_u_e_r_y_a2616fd7f7e5f3862c7f506ae30cdca3f}\label{class_s_q_l_i_t_e3___q_u_e_r_y_a2616fd7f7e5f3862c7f506ae30cdca3f}} 
+\index{SQLITE3\_QUERY@{SQLITE3\_QUERY}!set\_query\_template@{set\_query\_template}}
+\index{set\_query\_template@{set\_query\_template}!SQLITE3\_QUERY@{SQLITE3\_QUERY}}
+\doxysubsubsection{\texorpdfstring{set\_query\_template()}{set\_query\_template()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}}\& S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y\+::set\+\_\+query\+\_\+template (\begin{DoxyParamCaption}\item[{std\+::string}]{q\+\_\+template }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Clear query\+\_\+template 
+\begin{DoxyParams}{Parameters}
+{\em q\+\_\+template} & query template \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_s_q_l_i_t_e3___q_u_e_r_y}{S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+RY}} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/S\+Q\+L\+I\+T\+E3\+\_\+\+Q\+U\+E\+R\+Y.\+hpp\end{DoxyCompactItemize}
