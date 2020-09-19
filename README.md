@@ -16,7 +16,8 @@ Many of the methods took inspirations from the Python SQLite3 library.
         * include SQLITE3.hpp and SQLITE3_QUERY.hpp in your project
         
 ### Dependency
-SQLite3
+* SQLite3
+* C++11
 
 ### Documentation
 See [Link](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
