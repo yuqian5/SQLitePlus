@@ -1,4 +1,5 @@
-# SQLitePlus
+# SQLitePlus ![CMake](https://github.com/yuqian5/SQLitePlus/workflows/CMake/badge.svg?branch=master)
+
 A modern headers only SQLite3 wrapper implemented in C++
 
 ### About
