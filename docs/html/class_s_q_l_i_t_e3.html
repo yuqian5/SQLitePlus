@@ -92,14 +92,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae69c724fe071209c30eee7024cffc410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdf2da094d4d762aa80f8e9d4cdc86fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#acdf2da094d4d762aa80f8e9d4cdc86fa">get_result_row_count</a> ()</td></tr>
 <tr class="separator:acdf2da094d4d762aa80f8e9d4cdc86fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6edcb6e1c20f83a498463d53bb5c84fd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; SQLITE_ROW_VECTOR &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#a6edcb6e1c20f83a498463d53bb5c84fd">get_result</a> ()</td></tr>
-<tr class="separator:a6edcb6e1c20f83a498463d53bb5c84fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2304a4917a283fe10c54a8a9a0ef66e5"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; SQLITE_ROW_VECTOR &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#a2304a4917a283fe10c54a8a9a0ef66e5">get_result</a> ()</td></tr>
+<tr class="separator:a2304a4917a283fe10c54a8a9a0ef66e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a211f94f2ec000e277393e7f4d8788536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#a211f94f2ec000e277393e7f4d8788536">print_result</a> ()</td></tr>
 <tr class="separator:a211f94f2ec000e277393e7f4d8788536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6c569906995b10cbf5086cb10ebc12c"><td class="memItemLeft" align="right" valign="top">sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#ac6c569906995b10cbf5086cb10ebc12c">getDB</a> ()</td></tr>
-<tr class="separator:ac6c569906995b10cbf5086cb10ebc12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8442a7bbe6fa4d587f41f92d8b0b4f15"><td class="memItemLeft" align="right" valign="top">const sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#a8442a7bbe6fa4d587f41f92d8b0b4f15">getDB</a> ()</td></tr>
+<tr class="separator:a8442a7bbe6fa4d587f41f92d8b0b4f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade33ea2b9cdc0657914b436bad409ccd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#ade33ea2b9cdc0657914b436bad409ccd">perror</a> () const</td></tr>
 <tr class="separator:ade33ea2b9cdc0657914b436bad409ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b39e41f362fc80ad886bf7113b97e4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3.html#a6b39e41f362fc80ad886bf7113b97e4e">add_function</a> (std::string name, int argc, void(*lambda)(sqlite3_context *, int, sqlite3_value **))</td></tr>
+<tr class="separator:a6b39e41f362fc80ad886bf7113b97e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -194,6 +196,57 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>error_no</b></td></tr
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6b39e41f362fc80ad886bf7113b97e4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b39e41f362fc80ad886bf7113b97e4e">&#9670;&nbsp;</a></span>add_function()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SQLITE3::add_function </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)(sqlite3_context *, int, sqlite3_value **)&#160;</td>
+          <td class="paramname"><em>lambda</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add simple user defined function to database </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>name of function </td></tr>
+    <tr><td class="paramname">argc</td><td>number of argument a function take </td></tr>
+    <tr><td class="paramname">lambda</td><td>function implementation \lambda_arg (sqlite3_context* context, int argc, sqlite3_value** value) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 upon success, 1 upon failure </dd></dl>
+
+</div>
+</div>
 <a id="ab7123297406d994515230ed2c4d83de1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab7123297406d994515230ed2c4d83de1">&#9670;&nbsp;</a></span>commit()</h2>
 
@@ -319,8 +372,8 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>error_no</b></td></tr
 
 </div>
 </div>
-<a id="a6edcb6e1c20f83a498463d53bb5c84fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6edcb6e1c20f83a498463d53bb5c84fd">&#9670;&nbsp;</a></span>get_result()</h2>
+<a id="a2304a4917a283fe10c54a8a9a0ef66e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2304a4917a283fe10c54a8a9a0ef66e5">&#9670;&nbsp;</a></span>get_result()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -329,7 +382,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>error_no</b></td></tr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;SQLITE_ROW_VECTOR&gt;* SQLITE3::get_result </td>
+          <td class="memname">const std::vector&lt;SQLITE_ROW_VECTOR&gt;* SQLITE3::get_result </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -371,8 +424,8 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>error_no</b></td></tr
 
 </div>
 </div>
-<a id="ac6c569906995b10cbf5086cb10ebc12c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6c569906995b10cbf5086cb10ebc12c">&#9670;&nbsp;</a></span>getDB()</h2>
+<a id="a8442a7bbe6fa4d587f41f92d8b0b4f15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8442a7bbe6fa4d587f41f92d8b0b4f15">&#9670;&nbsp;</a></span>getDB()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +434,7 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>error_no</b></td></tr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">sqlite3* SQLITE3::getDB </td>
+          <td class="memname">const sqlite3* SQLITE3::getDB </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

@@ -23,13 +23,15 @@ int \mbox{\hyperlink{class_s_q_l_i_t_e3_ae69c724fe071209c30eee7024cffc410}{execu
 \item 
 int \mbox{\hyperlink{class_s_q_l_i_t_e3_acdf2da094d4d762aa80f8e9d4cdc86fa}{get\+\_\+result\+\_\+row\+\_\+count}} ()
 \item 
-std\+::vector$<$ S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR $>$ $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}{get\+\_\+result}} ()
+const std\+::vector$<$ S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR $>$ $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_a2304a4917a283fe10c54a8a9a0ef66e5}{get\+\_\+result}} ()
 \item 
 void \mbox{\hyperlink{class_s_q_l_i_t_e3_a211f94f2ec000e277393e7f4d8788536}{print\+\_\+result}} ()
 \item 
-sqlite3 $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}{get\+DB}} ()
+const sqlite3 $\ast$ \mbox{\hyperlink{class_s_q_l_i_t_e3_a8442a7bbe6fa4d587f41f92d8b0b4f15}{get\+DB}} ()
 \item 
 void \mbox{\hyperlink{class_s_q_l_i_t_e3_ade33ea2b9cdc0657914b436bad409ccd}{perror}} () const
+\item 
+int \mbox{\hyperlink{class_s_q_l_i_t_e3_a6b39e41f362fc80ad886bf7113b97e4e}{add\+\_\+function}} (std\+::string name, int argc, void($\ast$lambda)(sqlite3\+\_\+context $\ast$, int, sqlite3\+\_\+value $\ast$$\ast$))
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -66,6 +68,24 @@ Non-\/construction-\/copyable \mbox{\Hypertarget{class_s_q_l_i_t_e3_a78717eac108
 Destructor 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a6b39e41f362fc80ad886bf7113b97e4e}\label{class_s_q_l_i_t_e3_a6b39e41f362fc80ad886bf7113b97e4e}} 
+\index{SQLITE3@{SQLITE3}!add\_function@{add\_function}}
+\index{add\_function@{add\_function}!SQLITE3@{SQLITE3}}
+\doxysubsubsection{\texorpdfstring{add\_function()}{add\_function()}}
+{\footnotesize\ttfamily int S\+Q\+L\+I\+T\+E3\+::add\+\_\+function (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{argc,  }\item[{void($\ast$)(sqlite3\+\_\+context $\ast$, int, sqlite3\+\_\+value $\ast$$\ast$)}]{lambda }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add simple user defined function to database 
+\begin{DoxyParams}{Parameters}
+{\em name} & name of function \\
+\hline
+{\em argc} & number of argument a function take \\
+\hline
+{\em lambda} & function implementation \textbackslash{}lambda\+\_\+arg (sqlite3\+\_\+context$\ast$ context, int argc, sqlite3\+\_\+value$\ast$$\ast$ value) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 upon success, 1 upon failure 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_s_q_l_i_t_e3_ab7123297406d994515230ed2c4d83de1}\label{class_s_q_l_i_t_e3_ab7123297406d994515230ed2c4d83de1}} 
 \index{SQLITE3@{SQLITE3}!commit@{commit}}
 \index{commit@{commit}!SQLITE3@{SQLITE3}}
@@ -117,11 +137,11 @@ Execute query
 \begin{DoxyReturn}{Returns}
 0 upon success, 1 upon failure 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}\label{class_s_q_l_i_t_e3_a6edcb6e1c20f83a498463d53bb5c84fd}} 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a2304a4917a283fe10c54a8a9a0ef66e5}\label{class_s_q_l_i_t_e3_a2304a4917a283fe10c54a8a9a0ef66e5}} 
 \index{SQLITE3@{SQLITE3}!get\_result@{get\_result}}
 \index{get\_result@{get\_result}!SQLITE3@{SQLITE3}}
 \doxysubsubsection{\texorpdfstring{get\_result()}{get\_result()}}
-{\footnotesize\ttfamily std\+::vector$<$S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR$>$$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+\_\+result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::vector$<$S\+Q\+L\+I\+T\+E\+\_\+\+R\+O\+W\+\_\+\+V\+E\+C\+T\+OR$>$$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+\_\+result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Return the result of a query \begin{DoxyReturn}{Returns}
 std\+::vector$<$std\+::string$>$$\ast$ 
@@ -135,11 +155,11 @@ std\+::vector$<$std\+::string$>$$\ast$
 Get the number of rows the \begin{DoxyReturn}{Returns}
 int 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}\label{class_s_q_l_i_t_e3_ac6c569906995b10cbf5086cb10ebc12c}} 
+\mbox{\Hypertarget{class_s_q_l_i_t_e3_a8442a7bbe6fa4d587f41f92d8b0b4f15}\label{class_s_q_l_i_t_e3_a8442a7bbe6fa4d587f41f92d8b0b4f15}} 
 \index{SQLITE3@{SQLITE3}!getDB@{getDB}}
 \index{getDB@{getDB}!SQLITE3@{SQLITE3}}
 \doxysubsubsection{\texorpdfstring{getDB()}{getDB()}}
-{\footnotesize\ttfamily sqlite3$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const sqlite3$\ast$ S\+Q\+L\+I\+T\+E3\+::get\+DB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Get sqlite3 pointer, allowing user to expand the functions of S\+Q\+Lite \begin{DoxyReturn}{Returns}
 db 

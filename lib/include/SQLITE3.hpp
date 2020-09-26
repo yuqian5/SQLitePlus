@@ -211,7 +211,7 @@ public:
      * Return the result of a query
      * @return std::vector<std::string>*
      */
-    std::vector<SQLITE_ROW_VECTOR>* get_result(){
+    const std::vector<SQLITE_ROW_VECTOR>* get_result(){
         return result.get();
     }
 
@@ -232,7 +232,7 @@ public:
      * Get sqlite3 pointer, allowing user to expand the functions of SQLite
      * @return db
      */
-    sqlite3* getDB(){
+    const sqlite3* getDB(){
         return db;
     }
 
@@ -255,10 +255,35 @@ public:
             case 4:
                 std::cerr << "No database connected\n";
                 break;
+            case 126:
+                std::cerr << err_msg_str << std::endl;
             case 127:
                 std::cerr << err_msg << std::endl;
                 break;
         }
+    }
+
+    /**
+     * Add simple user defined function to database
+     * @param name name of function
+     * @param argc number of argument a function take
+     * @param lambda function implementation
+     * \lambda_arg
+     *      (sqlite3_context* context, int argc, sqlite3_value** value)
+     * @return 0 upon success, 1 upon failure
+     */
+    int add_function(std::string name,int argc, void (*lambda)(sqlite3_context*, int, sqlite3_value**)){
+        // add function to database
+        int rc = sqlite3_create_function(db, name.c_str(), argc, SQLITE_UTF8, NULL, lambda, NULL, NULL);
+
+        // check success
+        if (rc != SQLITE_OK) {
+            error_no = 126;
+            err_msg_str = sqlite3_errmsg(db);
+            return 1;
+        }
+
+        return 0;
     }
 
 private:
@@ -305,6 +330,7 @@ private:
     // sqlite objects
     sqlite3 *db;
     char *err_msg;
+    std::string err_msg_str;
     std::unique_ptr<std::vector<SQLITE_ROW_VECTOR>> result;
 };
 
