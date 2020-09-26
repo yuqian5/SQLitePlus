@@ -16,7 +16,7 @@ ENDIF (NOT CMAKE_BUILD_TYPE)
 FIND_PACKAGE(SQLite3 REQUIRED)
 
 # include library
-INCLUDE_DIRECTORIES(./include)
+INCLUDE_DIRECTORIES(./lib/include/)
 
 # add executables
 ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp)

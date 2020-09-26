@@ -257,6 +257,7 @@ public:
                 break;
             case 126:
                 std::cerr << err_msg_str << std::endl;
+                break;
             case 127:
                 std::cerr << err_msg << std::endl;
                 break;
