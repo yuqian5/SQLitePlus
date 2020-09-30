@@ -273,9 +273,14 @@ public:
      *      (sqlite3_context* context, int argc, sqlite3_value** value)
      * @return 0 upon success, 1 upon failure
      */
-    int add_function(std::string name,int argc, void (*lambda)(sqlite3_context*, int, sqlite3_value**)){
+    int add_function(const std::string& name,int argc, void (*lambda)(sqlite3_context*, int, sqlite3_value**)){
         // add function to database
-        int rc = sqlite3_create_function(db, name.c_str(), argc, SQLITE_UTF8, NULL, lambda, NULL, NULL);
+        int rc = sqlite3_create_function(db, name.c_str(),
+                                         argc, SQLITE_UTF8,
+                                         nullptr,
+                                         lambda,
+                                         nullptr,
+                                         nullptr);
 
         // check success
         if (rc != SQLITE_OK) {
