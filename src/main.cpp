@@ -72,11 +72,11 @@ int main() {
     db.add_function("PrintHello", //name of function
                     1, // number of argument the UDF take
                     [](sqlite3_context* c, int argc, sqlite3_value** value){ // function implementation
-        int id = sqlite3_value_int(value[0]);
-        std::string result = std::string("Hello" + std::to_string(id));
+                        int id = sqlite3_value_int(value[0]);
+                        std::string result = std::string("Hello" + std::to_string(id));
 
-        sqlite3_result_text(c, result.c_str(), result.length(), nullptr);
-    });
+                        sqlite3_result_text(c, result.c_str(), result.length(), nullptr);
+                    });
     db.execute("SELECT PrintHello(id) FROM TEST;");
     db.print_result();
 

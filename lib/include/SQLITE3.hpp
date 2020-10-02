@@ -105,11 +105,11 @@ public:
      * Destructor
      */
     ~SQLITE3() {
-        if (db) {
+        if (*db) {
             sqlite3_close(*db);
         }
-        if (err_msg) {
-            sqlite3_free(err_msg.get());
+        if (*err_msg) {
+            sqlite3_free(*err_msg);
         }
     }
 
@@ -119,7 +119,7 @@ public:
      * @return 0 upon success, 1 upon failure
      */
     int open(std::string &db_name) {
-        if (db) { // can only bind to 1 database
+        if (*db) { // can only bind to 1 database
             error_no = 2;
             return 1;
         } else {
@@ -160,7 +160,7 @@ public:
         exec_lock->lock(); // lock exec
 
         // check if database connection is open
-        if (!db) {
+        if (!*db) {
             error_no = 4;
             exec_lock->unlock(); // unlock exec
 
@@ -205,7 +205,7 @@ public:
         exec_lock->lock(); // lock exec
 
         // check if database connection is open
-        if (!db) {
+        if (!*db) {
             error_no = 4;
             exec_lock->unlock(); // unlock exec
 
@@ -239,7 +239,7 @@ public:
         exec_lock->lock(); // lock exec
 
         // check if database connection is open
-        if (!db) {
+        if (!*db) {
             error_no = 4;
             exec_lock->unlock(); // unlock exec
 

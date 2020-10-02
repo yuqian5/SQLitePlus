@@ -1,9 +1,7 @@
 #include "SQLITE3.hpp"
 #include "SQLITE3_QUERY.hpp"
-
 #include <cassert>
 #include <sqlite3.h>
-
 int main () {
     SQLITE3 db("test.db"); // init database
     if (db.execute("CREATE TABLE test (id int PRIMARY KEY, data text);")) {
@@ -57,7 +55,6 @@ int main () {
                     [](sqlite3_context* c, int argc, sqlite3_value** value){ // function implementation
                         int id = sqlite3_value_int(value[0]);
                         std::string result = std::string("Hello" + std::to_string(id));
-
                         sqlite3_result_text(c, result.c_str(), result.length(), nullptr);
                     });
     db.execute("SELECT PrintHello(id) FROM TEST;");
