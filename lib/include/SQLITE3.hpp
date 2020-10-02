@@ -209,9 +209,21 @@ public:
 
     /**
      * Return the result of a query
-     * @return std::vector<std::string>*
+     * @return shared pointer pointing to a copy of the result
      */
-    const std::vector<SQLITE_ROW_VECTOR>* get_result(){
+    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> get_result_copy() {
+        auto ret = std::make_shared<std::vector<SQLITE_ROW_VECTOR>>();
+        std::copy(result->begin(), result->end(), std::back_inserter(*ret));
+        return ret;
+    }
+
+    /**
+     * @deprecated Deprecated due to possibility of unsafe memory access
+     *
+     * Return the result of a query
+     * @return pointer to
+     */
+    const std::vector<SQLITE_ROW_VECTOR>* get_result() {
         return result.get();
     }
 
@@ -219,7 +231,7 @@ public:
      * Print out result of statement
      */
     void print_result(){
-        for (auto &x : *get_result()){ // print results
+        for (auto &x : *result){ // print results
             std::cout << "|";
             for (auto &y : x){
                 std::cout << y << "|";

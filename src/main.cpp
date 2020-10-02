@@ -41,7 +41,7 @@ int main() {
     std::cout << db.get_result_row_count() << " rows returned" << std::endl;
 
     // result is stored in a vector of SQLITE_ROW_VECTOR
-    auto result = db.get_result();
+    auto result = db.get_result_copy();
     std::cout << "The first element of first row is: " << result->at(0).at(0) << std::endl;
 
     // commit to save changes
