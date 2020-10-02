@@ -32,10 +32,14 @@
 
 typedef std::vector<std::string> SQLITE_ROW_VECTOR;
 
-
 struct Callback_Data {
+    Callback_Data(std::shared_ptr<SQLITE_ROW_VECTOR> col, std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> rows) {
+        this->col = col;
+        this->rows = rows;
+    }
+
     std::shared_ptr<SQLITE_ROW_VECTOR> col;
-    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> row;
+    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> rows;
 };
 
 class SQLITE3 {
@@ -60,7 +64,7 @@ public:
         }
 
         // initialize result and column vector
-        column = std::make_shared<SQLITE_ROW_VECTOR>();
+        column_name = std::make_shared<SQLITE_ROW_VECTOR>();
         result = std::make_shared<std::vector<SQLITE_ROW_VECTOR>>();
         // initialize err_msg
         err_msg = std::make_shared<char *>();
@@ -87,7 +91,7 @@ public:
         this->err_msg = rhs.err_msg;
         this->err_msg_str = rhs.err_msg_str;
         this->result = rhs.result;
-        this->column = rhs.column;
+        this->column_name = rhs.column_name;
         this->exec_lock = rhs.exec_lock;
 
         return *this;
@@ -170,11 +174,13 @@ public:
             return 1;
         }
 
-        // clear result vector
+        // clear result and column vector
         result->clear();
+        column_name->clear();
 
         // run query
-        int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &result, err_msg.get());
+        auto data_pack = Callback_Data(column_name, result);
+        int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             exec_lock->unlock(); // unlock exec
@@ -202,11 +208,13 @@ public:
             return 1;
         }
 
-        // clear result vector
+        // clear result and column vector
         result->clear();
+        column_name->clear();
 
         // run query
-        int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &result, err_msg.get());
+        auto data_pack = Callback_Data(column_name, result);
+        int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             exec_lock->unlock(); // unlock exec
@@ -234,11 +242,13 @@ public:
             return 1;
         }
 
-        // clear result vector
+        // clear result and column vector
         result->clear();
+        column_name->clear();
 
         // run query
-        int rc = sqlite3_exec(*db, query, &exec_callback, &result, err_msg.get());
+        auto data_pack = Callback_Data(column_name, result);
+        int rc = sqlite3_exec(*db, query, &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             exec_lock->unlock(); // unlock exec
@@ -251,11 +261,19 @@ public:
     }
 
     /**
-     * Get the number of row returned
-     * @return number of row
+     * Return the a copy of the column names for the result of the last query
+     * @return shared pointer pointing to a copy of the column name
      */
-    int get_result_row_count() {
-        return result->size();
+    std::shared_ptr<SQLITE_ROW_VECTOR> copy_column_names() {
+        exec_lock->lock(); // lock exec
+
+        // make copy of result
+        auto ret = std::make_shared<SQLITE_ROW_VECTOR>();
+        std::copy(column_name->begin(), column_name->end(), std::back_inserter(*ret));
+
+        exec_lock->unlock(); // unlock exec
+
+        return ret;
     }
 
     /**
@@ -267,7 +285,15 @@ public:
     }
 
     /**
-     * Return the result of a query
+     * Get the number of row returned
+     * @return number of row
+     */
+    int get_result_row_count() {
+        return result->size();
+    }
+
+    /**
+     * Return the a copy of the result of the last query
      * @return shared pointer pointing to a copy of the result
      */
     std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> copy_result() {
@@ -296,7 +322,9 @@ public:
      * Print out result of a query
      */
     void print_result() {
+        // copy result and column names
         auto result_copy = copy_result();
+
         for (SQLITE_ROW_VECTOR &row : *result_copy) { // print results
             std::cout << "|";
             for (auto &col : row) {
@@ -347,8 +375,7 @@ public:
      * @param name name of function
      * @param argc number of argument a function take
      * @param lambda function implementation
-     * \lambda_arg
-     *      (sqlite3_context* context, int argc, sqlite3_value** value)
+     * @lambda_arg void (sqlite3_context* context, int argc, sqlite3_value** value)
      * @return 0 upon success, 1 upon failure
      */
     int add_function(const std::string &name, int argc, void (*lambda)(sqlite3_context *, int, sqlite3_value **)) {
@@ -393,7 +420,14 @@ private:
      * @return 0
      */
     static int exec_callback(void *ptr, int argc, char *argv[], char *col_name[]) {
-        auto *result = reinterpret_cast<std::unique_ptr<std::vector<SQLITE_ROW_VECTOR>> *>(ptr);
+        auto *data = reinterpret_cast<Callback_Data *>(ptr);
+
+        // record column name if needed
+        if (data->col->size() == 0) {
+            for (int i = 0; i < argc; ++i) {
+                data->col.get()->push_back(std::string(col_name[i] ? col_name[i] : "NULL"));
+            }
+        }
 
         // get result
         SQLITE_ROW_VECTOR row;
@@ -402,7 +436,7 @@ private:
         }
 
         // push SQLITE_ROW_VECTOR to result vector
-        result->get()->push_back(row);
+        data->rows.get()->push_back(row);
 
         return 0;
     }
@@ -417,7 +451,7 @@ private:
     std::string err_msg_str;
 
     // query results
-    std::shared_ptr<SQLITE_ROW_VECTOR> column; // vector storing result column name
+    std::shared_ptr<SQLITE_ROW_VECTOR> column_name; // vector storing result column name
     std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> result; // result stored in matrix format
 
     // To prevent concurrent access
