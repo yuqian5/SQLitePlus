@@ -31,7 +31,7 @@ public:
      * constructor
      * @param query_template
      */
-     explicit SQLITE3_QUERY(std::string query_template = "") {
+    explicit SQLITE3_QUERY(std::string query_template = "") {
         this->query_template = std::move(query_template);
     }
 

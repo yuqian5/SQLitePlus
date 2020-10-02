@@ -19,7 +19,7 @@ FIND_PACKAGE(SQLite3 REQUIRED)
 INCLUDE_DIRECTORIES(./lib/include/)
 
 # add executables
-ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp)
+ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
 
 # link libraries
 TARGET_LINK_LIBRARIES(SQLitePlusDemo LINK_PUBLIC ${SQLite3_LIBRARIES})

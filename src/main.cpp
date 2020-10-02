@@ -10,11 +10,13 @@ int main() {
     std::cout << "test.db created" << std::endl;
     SQLITE3 db("test.db"); // init database
 
+
     // run execute plain string query
     if (db.execute("CREATE TABLE test (id int PRIMARY KEY, data text);")) {
         db.perror(); // in case of error, perror will print detail to stderr
     }
     std::cout << "Table test created" << std::endl;
+
 
     // run complex query using SQLITE3_QUERY object
     SQLITE3_QUERY query = SQLITE3_QUERY("INSERT INTO test VALUES (?, ?),(?, ?);"); // ? will be replaced after bind
@@ -29,6 +31,7 @@ int main() {
     }
     std::cout << "Repeated insertion failed" << std::endl;
 
+
     // methods from SQLITE3_QUERY can be chained, however, no chained function call can be after add_binding
     query.set_query_template("SELECT * FROM ?;").reset_binding().add_binding("test");
     if(!db.execute(query)){
@@ -37,16 +40,33 @@ int main() {
         db.perror();
     }
 
-    // get number of row returned
+
+    // get number of rows returned
     std::cout << db.get_result_row_count() << " rows returned" << std::endl;
 
+
+    // get number of cols returned
+    std::cout << db.get_result_col_count() << " cols returned" << std::endl;
+
+
+    // get column names
+    auto column_name = db.copy_column_names();
+    std::cout << "|";
+    for (auto &name : *column_name) {
+        std::cout << name << "|";
+    }
+    std::cout << std::endl;
+
+
     // result is stored in a vector of SQLITE_ROW_VECTOR
-    auto result = db.get_result();
+    auto result = db.copy_result();
     std::cout << "The first element of first row is: " << result->at(0).at(0) << std::endl;
+
 
     // commit to save changes
     db.commit();
     std::cout << "Changes committed" << std::endl;
+
 
     // add user defined function to database
     db.add_function("PrintHello", //name of function
@@ -59,6 +79,7 @@ int main() {
     });
     db.execute("SELECT PrintHello(id) FROM TEST;");
     db.print_result();
+
 
     // drop table
     db.execute("DROP TABLE test;");
