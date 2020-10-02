@@ -436,9 +436,9 @@ private:
         auto *data = reinterpret_cast<Callback_Data *>(ptr);
 
         // record column name if needed
-        if (data->col->size() == 0) {
+        if (data->col->empty()) {
             for (int i = 0; i < argc; ++i) {
-                data->col.get()->push_back(std::string(col_name[i] ? col_name[i] : "NULL"));
+                data->col->push_back(std::string(col_name[i] ? col_name[i] : "NULL"));
             }
         }
 
@@ -449,7 +449,7 @@ private:
         }
 
         // push SQLITE_ROW_VECTOR to result vector
-        data->rows.get()->push_back(row);
+        data->rows->push_back(row);
 
         return 0;
     }
