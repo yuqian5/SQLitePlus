@@ -38,23 +38,24 @@ public:
      * @param db_name name of database to open
      */
     explicit SQLITE3(const std::string &db_name = ""){
-        this->err_msg = nullptr;
-        this->db = nullptr;
-
+        // initialize db pointer
+        db = std::make_shared<sqlite3*>();
         // open database if name is provided
         if (!db_name.empty()) {
-            int rc = sqlite3_open(db_name.c_str(), &db);
+            int rc = sqlite3_open(db_name.c_str(), db.get());
             if (rc != SQLITE_OK) { // check for error
                 error_no = 1; // set error code
 
-                sqlite3_close(db);
+                sqlite3_close(*db);
                 throw std::runtime_error("Unable to open database");
             }
             start_transaction();
         }
 
         // initialize result vector
-        result = std::unique_ptr<std::vector<SQLITE_ROW_VECTOR>>(new std::vector<SQLITE_ROW_VECTOR>);
+        result = std::make_shared<std::vector<SQLITE_ROW_VECTOR>>();
+        // initialize err_msg
+        err_msg = std::make_shared<char*>();
     }
 
     /**
@@ -63,20 +64,31 @@ public:
     SQLITE3(const SQLITE3 &) = delete;
 
     /**
-     * Non-copyable
-     * @return SQLITE3
+     * copyable
      */
-    SQLITE3 &operator=(const SQLITE3 &) = delete;
+    SQLITE3 &operator=(const SQLITE3 &rhs) {
+        if (this == &rhs){ // self assignment guard
+            return *this;
+        }
+
+        // copy shared_pointers
+        this->db = rhs.db;
+        this->err_msg = rhs.err_msg;
+        this->err_msg_str = rhs.err_msg_str;
+        this->result = rhs.result;
+
+        return *this;
+    }
 
     /**
      * Destructor
      */
     ~SQLITE3(){
         if (db) {
-            sqlite3_close(db);
+            sqlite3_close(*db);
         }
         if (err_msg) {
-            sqlite3_free(err_msg);
+            sqlite3_free(err_msg.get());
         }
     }
 
@@ -90,12 +102,12 @@ public:
             error_no = 2;
             return 1;
         } else {
-            int rc = sqlite3_open(db_name.c_str(), &db);
+            int rc = sqlite3_open(db_name.c_str(), db.get());
 
             if (rc != SQLITE_OK) { // check for error
                 error_no = 1; // set error code
 
-                sqlite3_close(db);
+                sqlite3_close(*db);
                 return 1;
             }
 
@@ -109,7 +121,7 @@ public:
      * @return 0 upon success, 1 upon failure
      */
     int commit(){
-        int rc = sqlite3_exec(db, "COMMIT;", nullptr, nullptr, &err_msg);
+        int rc = sqlite3_exec(*db, "COMMIT;", nullptr, nullptr, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             return 1;
@@ -143,7 +155,7 @@ public:
         result->clear();
 
         // run query
-        int rc = sqlite3_exec(db, prepared_query.c_str(), &exec_callback, &result, &err_msg);
+        int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &result, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             return 1;
@@ -167,7 +179,7 @@ public:
         result->clear();
 
         // run query
-        int rc = sqlite3_exec(db, query.c_str(), &exec_callback, &result, &err_msg);
+        int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &result, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             return 1;
@@ -191,7 +203,7 @@ public:
         result->clear();
 
         // run query
-        int rc = sqlite3_exec(db, query, &exec_callback, &result, &err_msg);
+        int rc = sqlite3_exec(*db, query, &exec_callback, &result, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             return 1;
@@ -245,7 +257,7 @@ public:
      * @return db
      */
     const sqlite3* getDB(){
-        return db;
+        return *db;
     }
 
     /**
@@ -271,7 +283,7 @@ public:
                 std::cerr << err_msg_str << std::endl;
                 break;
             case 127:
-                std::cerr << err_msg << std::endl;
+                std::cerr << *err_msg << std::endl;
                 break;
         }
     }
@@ -287,7 +299,7 @@ public:
      */
     int add_function(const std::string& name,int argc, void (*lambda)(sqlite3_context*, int, sqlite3_value**)){
         // add function to database
-        int rc = sqlite3_create_function(db, name.c_str(),
+        int rc = sqlite3_create_function(*db, name.c_str(),
                                          argc, SQLITE_UTF8,
                                          nullptr,
                                          lambda,
@@ -297,7 +309,7 @@ public:
         // check success
         if (rc != SQLITE_OK) {
             error_no = 126;
-            err_msg_str = sqlite3_errmsg(db);
+            err_msg_str = sqlite3_errmsg(*db);
             return 1;
         }
 
@@ -310,7 +322,7 @@ private:
      * @return 0 upon success, 1 upon failure
      */
     int start_transaction(){
-        int rc = sqlite3_exec(db, "BEGIN;", nullptr, nullptr, &err_msg);
+        int rc = sqlite3_exec(*db, "BEGIN;", nullptr, nullptr, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
             error_no = 127;
             return 1;
@@ -346,10 +358,10 @@ public:
 
 private:
     // sqlite objects
-    sqlite3 *db;
-    char *err_msg;
+    std::shared_ptr<sqlite3*> db;
+    std::shared_ptr<char*> err_msg;
     std::string err_msg_str;
-    std::unique_ptr<std::vector<SQLITE_ROW_VECTOR>> result;
+    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> result;
 };
 
 
