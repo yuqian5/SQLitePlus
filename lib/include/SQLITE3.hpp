@@ -144,7 +144,11 @@ public:
     int commit() {
         int rc = sqlite3_exec(*db, "COMMIT;", nullptr, nullptr, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            error_no = 127;
+            // copy error message and free memory
+            err_msg_str = std::string(*err_msg);
+            sqlite3_free(*err_msg);
+            error_no = 126;
+
             return 1;
         }
         start_transaction();
@@ -430,7 +434,11 @@ private:
     int start_transaction() {
         int rc = sqlite3_exec(*db, "BEGIN;", nullptr, nullptr, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            error_no = 127;
+            // copy error message and free memory
+            err_msg_str = std::string(*err_msg);
+            sqlite3_free(*err_msg);
+            error_no = 126;
+
             return 1;
         }
         return 0;
