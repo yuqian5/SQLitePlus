@@ -323,9 +323,18 @@ public:
      */
     void print_result() {
         // copy result and column names
+        auto column_name_copy = copy_column_names();
         auto result_copy = copy_result();
 
-        for (SQLITE_ROW_VECTOR &row : *result_copy) { // print results
+        // print column names
+        std::cout << "|";
+        for (auto &name : *column_name_copy) {
+            std::cout << name << "|";
+        }
+        std::cout << std::endl;
+
+        // print rows
+        for (SQLITE_ROW_VECTOR &row : *result_copy) {
             std::cout << "|";
             for (auto &col : row) {
                 std::cout << col << "|";
