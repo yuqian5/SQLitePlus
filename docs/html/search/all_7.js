@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['reset_5fbinding_12',['reset_binding',['../class_s_q_l_i_t_e3___q_u_e_r_y.html#ac28a68985cd0d37436e6885d9a19dd62',1,'SQLITE3_QUERY']]]
+  ['perror_14',['perror',['../class_s_q_l_i_t_e3.html#ade33ea2b9cdc0657914b436bad409ccd',1,'SQLITE3']]],
+  ['print_5fresult_15',['print_result',['../class_s_q_l_i_t_e3.html#a211f94f2ec000e277393e7f4d8788536',1,'SQLITE3']]]
 ];

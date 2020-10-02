@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.17)
 PROJECT(SQLitePlusDemo)
 
 SET(CMAKE_CXX_STANDARD 11)
+ENABLE_TESTING()
 
 # set compile flag
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra")
@@ -18,9 +19,11 @@ FIND_PACKAGE(SQLite3 REQUIRED)
 # include library
 INCLUDE_DIRECTORIES(./lib/include/)
 
-# add executables
+# add executables and link library
 ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
-
-# link libraries
 TARGET_LINK_LIBRARIES(SQLitePlusDemo LINK_PUBLIC ${SQLite3_LIBRARIES})
 
+# add test
+ADD_EXECUTABLE(SQLitePlusMainTest test/MainTest.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
+TARGET_LINK_LIBRARIES(SQLitePlusMainTest LINK_PUBLIC ${SQLite3_LIBRARIES})
+ADD_TEST(MAIN SQLitePlusMainTest)

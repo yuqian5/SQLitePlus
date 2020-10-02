@@ -27,15 +27,19 @@
 #include <memory>
 #include <functional>
 #include <mutex>
+#include <utility>
 
 #include "SQLITE3_QUERY.hpp"
 
 typedef std::vector<std::string> SQLITE_ROW_VECTOR;
 
+/**
+ * \private
+ */
 struct Callback_Data {
     Callback_Data(std::shared_ptr<SQLITE_ROW_VECTOR> col, std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> rows) {
-        this->col = col;
-        this->rows = rows;
+        this->col = std::move(col);
+        this->rows = std::move(rows);
     }
 
     std::shared_ptr<SQLITE_ROW_VECTOR> col;
@@ -345,9 +349,9 @@ public:
 
     /**
      * Get sqlite3 pointer, allowing user to expand the functions of SQLite
-     * @return db
+     * @return pointer to db
      */
-    const sqlite3 *getDB() {
+    const sqlite3 *get_db() {
         return *db;
     }
 
@@ -432,9 +436,9 @@ private:
         auto *data = reinterpret_cast<Callback_Data *>(ptr);
 
         // record column name if needed
-        if (data->col->size() == 0) {
+        if (data->col->empty()) {
             for (int i = 0; i < argc; ++i) {
-                data->col.get()->push_back(std::string(col_name[i] ? col_name[i] : "NULL"));
+                data->col->push_back(std::string(col_name[i] ? col_name[i] : "NULL"));
             }
         }
 
@@ -445,7 +449,7 @@ private:
         }
 
         // push SQLITE_ROW_VECTOR to result vector
-        data->rows.get()->push_back(row);
+        data->rows->push_back(row);
 
         return 0;
     }

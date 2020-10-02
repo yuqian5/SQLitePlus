@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['open_8',['open',['../class_s_q_l_i_t_e3.html#a4e2a47ed9e0e539ea097801636d32052',1,'SQLITE3']]],
-  ['operator_3d_9',['operator=',['../class_s_q_l_i_t_e3.html#a256ba51fe08327eb2d6a51743fe90d11',1,'SQLITE3::operator=()'],['../class_s_q_l_i_t_e3___q_u_e_r_y.html#ade5a3423f44bfde59733da41a5731136',1,'SQLITE3_QUERY::operator=()']]]
+  ['get_5fdb_8',['get_db',['../class_s_q_l_i_t_e3.html#a94e79ef42b3580892e00341626605f82',1,'SQLITE3']]],
+  ['get_5fresult_9',['get_result',['../class_s_q_l_i_t_e3.html#a2304a4917a283fe10c54a8a9a0ef66e5',1,'SQLITE3']]],
+  ['get_5fresult_5fcol_5fcount_10',['get_result_col_count',['../class_s_q_l_i_t_e3.html#a55d97235b11299d15fd95e33a9662c18',1,'SQLITE3']]],
+  ['get_5fresult_5frow_5fcount_11',['get_result_row_count',['../class_s_q_l_i_t_e3.html#acdf2da094d4d762aa80f8e9d4cdc86fa',1,'SQLITE3']]]
 ];
