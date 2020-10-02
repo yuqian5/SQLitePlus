@@ -29,7 +29,7 @@ See [Doxygen](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
     
 ### Contributing
 1. Fork Repo
-2. Make Changes
+2. Make Changes and add new tests if needed
 3. Submit pull request with detail description on changes and new features
 4. Wait for approval
 * Please keep in mind that this project aims to create a simple and intuitive interface for the SQLite3 C library, so please refrain from adding anything to the dependency tree.
