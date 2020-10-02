@@ -186,7 +186,11 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            error_no = 127;
+            // copy error message and free memory
+            err_msg_str = std::string(*err_msg);
+            sqlite3_free(*err_msg);
+            error_no = 126;
+
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -220,7 +224,11 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            error_no = 127;
+            // copy error message and free memory
+            err_msg_str = std::string(*err_msg);
+            sqlite3_free(*err_msg);
+            error_no = 126;
+
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -254,7 +262,11 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query, &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            error_no = 127;
+            // copy error message and free memory
+            err_msg_str = std::string(*err_msg);
+            sqlite3_free(*err_msg);
+            error_no = 126;
+
             exec_lock->unlock(); // unlock exec
 
             return 1;
