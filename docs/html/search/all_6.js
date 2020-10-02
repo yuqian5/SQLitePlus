@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['perror_10',['perror',['../class_s_q_l_i_t_e3.html#ade33ea2b9cdc0657914b436bad409ccd',1,'SQLITE3']]],
-  ['print_5fresult_11',['print_result',['../class_s_q_l_i_t_e3.html#a211f94f2ec000e277393e7f4d8788536',1,'SQLITE3']]]
+  ['open_12',['open',['../class_s_q_l_i_t_e3.html#a4e2a47ed9e0e539ea097801636d32052',1,'SQLITE3']]],
+  ['operator_3d_13',['operator=',['../class_s_q_l_i_t_e3.html#a85e6e7c1e7a16296838d1e82b9549668',1,'SQLITE3::operator=()'],['../class_s_q_l_i_t_e3___q_u_e_r_y.html#ade5a3423f44bfde59733da41a5731136',1,'SQLITE3_QUERY::operator=()']]]
 ];

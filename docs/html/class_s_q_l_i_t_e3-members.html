@@ -22,7 +22,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SQLitePlus
+   &#160;<span id="projectnumber">v1.02</span>
    </div>
+   <div id="projectbrief">A modern headers only SQLite3 wrapper implemented in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -68,22 +70,25 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a6b39e41f362fc80ad886bf7113b97e4e">add_function</a>(std::string name, int argc, void(*lambda)(sqlite3_context *, int, sqlite3_value **))</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#abbcb6d492c91ce07f4f4ba5d62f40a36">add_function</a>(const std::string &amp;name, int argc, void(*lambda)(sqlite3_context *, int, sqlite3_value **))</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#ab7123297406d994515230ed2c4d83de1">commit</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a97155cc42582108f665f5d50974412ed">copy_column_names</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a503abeb32ab9af9e7bb7c7c39da2b3f6">copy_result</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>error_no</b> (defined in <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a>)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a975a034feae9efa78bdd4bf8aae5f1fd">execute</a>(SQLITE3_QUERY &amp;query)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#ac44100d24a875743b3bdca4ef7e34a88">execute</a>(std::string &amp;query)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#ae69c724fe071209c30eee7024cffc410">execute</a>(const char *query)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a2304a4917a283fe10c54a8a9a0ef66e5">get_result</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a94e79ef42b3580892e00341626605f82">get_db</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a2304a4917a283fe10c54a8a9a0ef66e5">get_result</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a55d97235b11299d15fd95e33a9662c18">get_result_col_count</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#acdf2da094d4d762aa80f8e9d4cdc86fa">get_result_row_count</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a8442a7bbe6fa4d587f41f92d8b0b4f15">getDB</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a4e2a47ed9e0e539ea097801636d32052">open</a>(std::string &amp;db_name)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a256ba51fe08327eb2d6a51743fe90d11">operator=</a>(const SQLITE3 &amp;)=delete</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#ade33ea2b9cdc0657914b436bad409ccd">perror</a>() const</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a211f94f2ec000e277393e7f4d8788536">print_result</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a50eda89405eaa859ffa806faf0cd9b72">SQLITE3</a>(const std::string &amp;db_name=&quot;&quot;)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a1c30feab664663234e37c591818663aa">SQLITE3</a>(const SQLITE3 &amp;)=delete</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a78717eac1085edcd9e41ffef3d1e2142">~SQLITE3</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a4e2a47ed9e0e539ea097801636d32052">open</a>(std::string &amp;db_name)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a85e6e7c1e7a16296838d1e82b9549668">operator=</a>(const SQLITE3 &amp;rhs)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#ade33ea2b9cdc0657914b436bad409ccd">perror</a>() const</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a211f94f2ec000e277393e7f4d8788536">print_result</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a50eda89405eaa859ffa806faf0cd9b72">SQLITE3</a>(const std::string &amp;db_name=&quot;&quot;)</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a1c30feab664663234e37c591818663aa">SQLITE3</a>(const SQLITE3 &amp;)=delete</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html#a78717eac1085edcd9e41ffef3d1e2142">~SQLITE3</a>()</td><td class="entry"><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
