@@ -84,7 +84,7 @@ public:
     template<typename STRING, typename ... STRINGS>
     void add_binding(STRING b, STRINGS ... bs) {
         // check if arguments provided is string type
-        if (typeid(b) == typeid(std::string) || typeid(b) == typeid(const char *)) {
+        if (typeid(b) == typeid(std::string) || typeid(b) == typeid(const char *) || typeid(b) == typeid(char *)) {
             binding.push_back(b);
             add_binding(bs...);
         }
