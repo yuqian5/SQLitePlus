@@ -84,12 +84,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1f2e441b598decc2c4b5492787fc391d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d99ebd73c718573e95c75a85cbedd08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#a6d99ebd73c718573e95c75a85cbedd08">add_binding</a> (const std::string &amp;str)</td></tr>
 <tr class="separator:a6d99ebd73c718573e95c75a85cbedd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cef59c3975b2a76b9e8aab6a2595487"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#a9cef59c3975b2a76b9e8aab6a2595487">add_binding</a> (const char *str)</td></tr>
+<tr class="separator:a9cef59c3975b2a76b9e8aab6a2595487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9ac7a1527db20ed3a73d5d991d8a4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#aca9ac7a1527db20ed3a73d5d991d8a4d">add_binding</a> (char *str)</td></tr>
+<tr class="separator:aca9ac7a1527db20ed3a73d5d991d8a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57de72a97b352fe0c33b2116e680500b"><td class="memTemplParams" colspan="2">template&lt;typename STRING , typename ... STRINGS&gt; </td></tr>
 <tr class="memitem:a57de72a97b352fe0c33b2116e680500b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#a57de72a97b352fe0c33b2116e680500b">add_binding</a> (STRING b, STRINGS ... bs)</td></tr>
 <tr class="separator:a57de72a97b352fe0c33b2116e680500b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a584ff56ef64b8f04dedc6f559dbb8cfb"><td class="memItemLeft" align="right" valign="top"><a id="a584ff56ef64b8f04dedc6f559dbb8cfb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>add_binding</b> ()</td></tr>
-<tr class="separator:a584ff56ef64b8f04dedc6f559dbb8cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acca5a7aeb2749265903b9a6411a058e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html">SQLITE3_QUERY</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#acca5a7aeb2749265903b9a6411a058e2">bind</a> ()</td></tr>
 <tr class="separator:acca5a7aeb2749265903b9a6411a058e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28a68985cd0d37436e6885d9a19dd62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html">SQLITE3_QUERY</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html#ac28a68985cd0d37436e6885d9a19dd62">reset_binding</a> ()</td></tr>
@@ -201,8 +202,72 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aca9ac7a1527db20ed3a73d5d991d8a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9ac7a1527db20ed3a73d5d991d8a4d">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SQLITE3_QUERY::add_binding </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add a new string to the binding vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9cef59c3975b2a76b9e8aab6a2595487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cef59c3975b2a76b9e8aab6a2595487">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SQLITE3_QUERY::add_binding </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add a new string to the binding vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a6d99ebd73c718573e95c75a85cbedd08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d99ebd73c718573e95c75a85cbedd08">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d99ebd73c718573e95c75a85cbedd08">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +299,7 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 </div>
 </div>
 <a id="a57de72a97b352fe0c33b2116e680500b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57de72a97b352fe0c33b2116e680500b">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a57de72a97b352fe0c33b2116e680500b">&#9670;&nbsp;</a></span>add_binding() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
