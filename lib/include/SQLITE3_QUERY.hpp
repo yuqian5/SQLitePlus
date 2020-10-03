@@ -67,11 +67,34 @@ public:
     ~SQLITE3_QUERY() = default;
 
     /**
+     * \private
+     */
+    void add_binding() {
+
+    }
+
+    /**
      * Add a new string to the binding vector
      * @param str
      */
     void add_binding(const std::string &str) {
         binding.push_back(str);
+    }
+
+    /**
+     * Add a new string to the binding vector
+     * @param str
+     */
+    void add_binding(const char * str) {
+        binding.emplace_back(str);
+    }
+
+    /**
+     * Add a new string to the binding vector
+     * @param str
+     */
+    void add_binding(char * str) {
+        binding.emplace_back(str);
     }
 
     /**
@@ -84,14 +107,10 @@ public:
     template<typename STRING, typename ... STRINGS>
     void add_binding(STRING b, STRINGS ... bs) {
         // check if arguments provided is string type
-        if (typeid(b) == typeid(std::string) || typeid(b) == typeid(const char *)) {
+        if (typeid(b) == typeid(std::string) || typeid(b) == typeid(const char *) || typeid(b) == typeid(char *)) {
             binding.push_back(b);
             add_binding(bs...);
         }
-    }
-
-    void add_binding() {
-
     }
 
     /**
