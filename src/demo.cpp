@@ -1,4 +1,4 @@
-//demo
+//tutorial
 //
 // Created by Kerry Cao on 2020-09-18.
 // SQLitePlus

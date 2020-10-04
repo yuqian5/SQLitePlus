@@ -21,11 +21,6 @@ Many of the methods took inspirations from the Python SQLite3 library.
 
 ### Documentation
 See [Doxygen](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
-
-### Demo
-    cmake CMakeLists.txt
-    make
-    ./SQLitePlusDemo
     
 ### Contributing
 1. Fork Repo
@@ -36,4 +31,13 @@ See [Doxygen](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
     
 ### Feature Request
 Submite a feature request under the issues tab.
+
+### Demo
+    cmake CMakeLists.txt
+    make
+    ./SQLitePlusDemo
+    
+### Tutorial
+* [SQLITE3](./docs/tutorial/tutorial-SQLITE3.md)
+* [SQLITE3_QUERY](./docs/tutorial/tutorial-SQLITE3_QUERY.md)
 
