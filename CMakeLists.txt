@@ -1,7 +1,10 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.17)
 PROJECT(SQLitePlusDemo)
 
+# c++11 minimum
 SET(CMAKE_CXX_STANDARD 11)
+
+# github action cmake CI
 ENABLE_TESTING()
 
 # set compile flag
@@ -20,14 +23,14 @@ FIND_PACKAGE(SQLite3 REQUIRED)
 INCLUDE_DIRECTORIES(./lib/include/)
 
 # add executables and link library
-ADD_EXECUTABLE(SQLitePlusDemo src/main.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
+ADD_EXECUTABLE(SQLitePlusDemo src/demo.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
 TARGET_LINK_LIBRARIES(SQLitePlusDemo LINK_PUBLIC ${SQLite3_LIBRARIES})
 
-# add test
+# add SQLitePlus_SQLITE3_TEST
 ADD_EXECUTABLE(SQLitePlus_SQLITE3_TEST test/SQLITE3_TEST.cpp lib/include/SQLITE3_QUERY.hpp lib/include/SQLITE3.hpp)
 TARGET_LINK_LIBRARIES(SQLitePlus_SQLITE3_TEST LINK_PUBLIC ${SQLite3_LIBRARIES})
 ADD_TEST(SQLitePlus_SQLITE3_TEST SQLitePlus_SQLITE3_TEST)
 
-# add test
+# add SQLitePlus_SQLITE3_QUERY_TEST
 ADD_EXECUTABLE(SQLitePlus_SQLITE3_QUERY_TEST test/SQLITE3_QUERY_TEST.cpp lib/include/SQLITE3_QUERY.hpp)
 ADD_TEST(SQLitePlus_SQLITE3_QUERY_TEST SQLitePlus_SQLITE3_QUERY_TEST)
