@@ -70,41 +70,48 @@ $(function() {
 <div class="textblock"><p>A basic tutorial on <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a></p>
 <h2><a class="anchor" id="autotoc_md10"></a>
 Open database</h2>
-<p><a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a> db("test.db");</p>
-<p>or </p><pre class="fragment">SQLITE3 db;
-db.open("test.db");
-</pre><p>Note: Once <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a> established a connection to a database, it cannot open another connection to another database. You will need to create another <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a>.</p>
+<div class="fragment"><div class="line">SQLITE3 db(&quot;test.db&quot;);</div>
+</div><!-- fragment --><p>or </p><div class="fragment"><div class="line">SQLITE3 db;</div>
+<div class="line">db.open(&quot;test.db&quot;);</div>
+</div><!-- fragment --><p>Note: Once <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a> established a connection to a database, it cannot open another connection to another database. You will need to create another <a class="el" href="class_s_q_l_i_t_e3.html">SQLITE3</a>.</p>
 <h2><a class="anchor" id="autotoc_md11"></a>
 Run a query</h2>
-<p>int rc = db.execute("CREATE TABLE test (id int PRIMARY KEY, data text);") if (rc) { // return 1 when failed // handle error } else { // we are good }</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<div class="fragment"><div class="line">int rc = db.execute(&quot;CREATE TABLE test (id int PRIMARY KEY, data text);&quot;)</div>
+<div class="line">if (rc) { // return 1 when failed</div>
+<div class="line">    // handle error</div>
+<div class="line">} else {</div>
+<div class="line">    // we are good</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
 Commit a query</h2>
-<p>db.commit();</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<div class="fragment"><div class="line">db.commit();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
 Get the result of the last query executed</h2>
-<p>auto result = db.copy_result(); // returns a shared pointer that points to a vector of SQLITE_ROW_VECTOR</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<div class="fragment"><div class="line">auto result = db.copy_result(); </div>
+<div class="line">// returns a shared pointer that points to a vector of SQLITE_ROW_VECTOR</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
 Get the column names of the result of the last query executed</h2>
-<p>auto columns = db.copy_column_names(); // returns a shared pointer that points to a vector of strings</p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<div class="fragment"><div class="line">auto columns = db.copy_column_names(); </div>
+<div class="line">// returns a shared pointer that points to a vector of strings</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
 Get number of rows returned</h2>
-<p>int row_count = db.get_result_row_count();</p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<div class="fragment"><div class="line">int row_count = db.get_result_row_count();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
 Get number of columns returned</h2>
-<p>int column_count = db.get_result_col_count();</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<div class="fragment"><div class="line">int column_count = db.get_result_col_count();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md17"></a>
 Print the result of the last query executed</h2>
-<p>db.print_result();</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<div class="fragment"><div class="line">db.print_result();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md18"></a>
 Get the raw sqlite pointer</h2>
-<p>db.get_db();</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<div class="fragment"><div class="line">db.get_db();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
 Get the error message from the last executed query, if exist</h2>
-<p>db.perror();</p>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<div class="fragment"><div class="line">db.perror();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
 Add a user defined function to database</h2>
-<p>db.add_function("function_name", 1, [](sqlite3_context* c, int argc, sqlite3_value** value){ //implementation });</p>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<div class="fragment"><div class="line">db.add_function(&quot;function_name&quot;, 1, [](sqlite3_context* c, int argc, sqlite3_value** value){ //implementation });</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
 Demo Program</h2>
 <div class="fragment"><div class="line">#include &lt;iostream&gt;</div>
 <div class="line">#include &lt;sqlite3.h&gt;</div>

@@ -70,34 +70,41 @@ $(function() {
 <div class="textblock"><p>A basic tutorial on <a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html">SQLITE3_QUERY</a></p>
 <h2><a class="anchor" id="autotoc_md23"></a>
 Create a query</h2>
-<p><a class="el" href="class_s_q_l_i_t_e3___q_u_e_r_y.html">SQLITE3_QUERY</a> query;</p>
-<p>or you can create a query with a sql template </p><pre class="fragment">SQLITE#_QUERY query("SELECT * FROM ? WHERE id &gt; ?;");
-</pre><h2><a class="anchor" id="autotoc_md24"></a>
+<div class="fragment"><div class="line">SQLITE3_QUERY query;</div>
+</div><!-- fragment --><p>or you can create a query with a sql template</p>
+<div class="fragment"><div class="line">SQLITE#_QUERY query(&quot;SELECT * FROM ? WHERE id &gt; ?;&quot;);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Add SQL query template to a query</h2>
-<p>query.set_query_template("SELECT * FROM ? WHERE id &gt; ?;");</p>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<div class="fragment"><div class="line">query.set_query_template(&quot;SELECT * FROM ? WHERE id &gt; ?;&quot;);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
 Add binding to a query</h2>
-<p>query.add_binding("TestTable");</p>
-<p>or </p><pre class="fragment">std::string table_name = "TestTable";
-query.add_binding(table_name);
-</pre><p>or </p><pre class="fragment">char* table_name = "TestTable";
-query.add_binding(table_name);
-</pre><p>or you can add multiple bindings at the same time </p><pre class="fragment">query.add_binding("TestTable", "100"); 
-// you can use const char*, char* or std::string
-</pre><h2><a class="anchor" id="autotoc_md26"></a>
+<div class="fragment"><div class="line">query.add_binding(&quot;TestTable&quot;);</div>
+</div><!-- fragment --><p>or</p>
+<div class="fragment"><div class="line">std::string table_name = &quot;TestTable&quot;;</div>
+<div class="line">query.add_binding(table_name);</div>
+</div><!-- fragment --><p>or</p>
+<div class="fragment"><div class="line">char* table_name = &quot;TestTable&quot;;</div>
+<div class="line">query.add_binding(table_name);</div>
+</div><!-- fragment --><p>or you can add multiple bindings at the same time</p>
+<div class="fragment"><div class="line">query.add_binding(&quot;TestTable&quot;, &quot;100&quot;); </div>
+<div class="line">// you can use const char*, char* or std::string</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md26"></a>
 Delete all binding</h2>
-<p>query.reset_binding();</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<div class="fragment"><div class="line">query.reset_binding();</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md27"></a>
 Create a SQL query</h2>
-<p>query.bind()</p>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<div class="fragment"><div class="line">query.bind()</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Get the created SQL query</h2>
-<p>std::string sql_query = query.bound_query;</p>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<div class="fragment"><div class="line">std::string sql_query = query.bound_query;</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
 Function calls can be chained together</h2>
-<p>// good query.set_query_template("SELECT * FROM ?;").reset_binding().add_binding("test");</p>
-<p>// error query.set_query_template("SELECT * FROM ?;").reset_binding().add_binding("test").bind();</p>
-<p>You cannot chain function calls after add_binding. </p>
+<div class="fragment"><div class="line">// good</div>
+<div class="line">query.set_query_template(&quot;SELECT * FROM ?;&quot;).reset_binding().add_binding(&quot;test&quot;);</div>
+<div class="line"> </div>
+<div class="line">// error</div>
+<div class="line">query.set_query_template(&quot;SELECT * FROM ?;&quot;).reset_binding().add_binding(&quot;test&quot;).bind();</div>
+</div><!-- fragment --><p>You cannot chain function calls after add_binding. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
