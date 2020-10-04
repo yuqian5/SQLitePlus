@@ -1,6 +1,6 @@
 # SQLitePlus ![build](https://github.com/yuqian5/SQLitePlus/workflows/CMake/badge.svg?branch=master)
 
-A modern headers only SQLite3 wrapper implemented in C++
+A modern C++ header only SQLite3 wrapper
 
 ### About
 This headers only library aims to provide an simple and intuitive interface for the SQLite3 C library.
@@ -33,9 +33,11 @@ See [Doxygen](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
 Submite a feature request under the issues tab.
 
 ### Demo
+```bash
     cmake CMakeLists.txt
     make
     ./SQLitePlusDemo
+```
     
 ### Tutorial
 * [SQLITE3](./docs/tutorial/tutorial-SQLITE3.md)
