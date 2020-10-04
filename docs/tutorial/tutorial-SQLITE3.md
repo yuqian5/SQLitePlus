@@ -2,54 +2,77 @@
 A basic tutorial on SQLITE3
 
 ### Open database
+``` c++
     SQLITE3 db("test.db");
+```
     
 or
-
+``` c++
     SQLITE3 db;
     db.open("test.db");
+```
     
 Note: Once SQLITE3 established a connection to a database, 
 it cannot open another connection to another database. You will 
 need to create another SQLITE3.
     
 ### Run a query
+``` c++
     int rc = db.execute("CREATE TABLE test (id int PRIMARY KEY, data text);")
     if (rc) { // return 1 when failed
         // handle error
     } else {
         // we are good
     }
+```
     
 ### Commit a query
+``` c++
     db.commit();
+```
     
 ### Get the result of the last query executed
+``` c++
     auto result = db.copy_result(); 
     // returns a shared pointer that points to a vector of SQLITE_ROW_VECTOR
+```
     
 ### Get the column names of the result of the last query executed
+``` c++
     auto columns = db.copy_column_names(); 
     // returns a shared pointer that points to a vector of strings
+```
     
 ### Get number of rows returned 
+``` c++
     int row_count = db.get_result_row_count();
+```
     
 ### Get number of columns returned
+``` c++
     int column_count = db.get_result_col_count();
+```
     
 ### Print the result of the last query executed
+``` c++
     db.print_result();
+```
     
 ### Get the raw sqlite pointer
+``` c++
     db.get_db();
-    
+```
+
 ### Get the error message from the last executed query, if exist
+``` c++
     db.perror();
-    
+```
+
 ### Add a user defined function to database
+``` c++
     db.add_function("function_name", 1, [](sqlite3_context* c, int argc, sqlite3_value** value){ //implementation });
- 
+```
+
 ### Demo Program   
 ``` c++
     #include <iostream>
