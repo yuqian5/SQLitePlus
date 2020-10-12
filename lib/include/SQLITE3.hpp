@@ -31,6 +31,14 @@
 
 #include "SQLITE3_QUERY.hpp"
 
+/**
+ * \private
+ */
+enum {NO_ERROR, OPEN_ERROR, OVERRIDE_ERROR, QUERY_BINDING_ERROR, UNINITIALIZED_ERROR, EXECUTION_ERROR};
+
+/**
+ * \private
+ */
 typedef std::vector<std::string> SQLITE_ROW_VECTOR;
 
 /**
@@ -46,6 +54,9 @@ struct Callback_Data {
     std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> rows;
 };
 
+/**
+ * Wrapper Library for sqlite3
+ */
 class SQLITE3 {
 public:
     /**
@@ -59,7 +70,7 @@ public:
         if (!db_name.empty()) {
             int rc = sqlite3_open(db_name.c_str(), db.get());
             if (rc != SQLITE_OK) { // check for error
-                error_no = 1; // set error code
+                error_no = OPEN_ERROR; // set error code
 
                 sqlite3_close(*db);
                 throw std::runtime_error("Unable to open database");
@@ -78,16 +89,33 @@ public:
     }
 
     /**
-     * Non-construction-copyable
+     * copy construction
      */
-    SQLITE3(const SQLITE3 &) = delete;
+    SQLITE3(const SQLITE3 &rhs) {
+        // copy shared_pointers
+        this->db = rhs.db;
+        this->err_msg = rhs.err_msg;
+        this->err_msg_str = rhs.err_msg_str;
+        this->result = rhs.result;
+        this->column_name = rhs.column_name;
+        this->exec_lock = rhs.exec_lock;
+        this->error_no = rhs.error_no;
+    }
 
     /**
-     * copyable
+     * copy assign
      */
     SQLITE3 &operator=(const SQLITE3 &rhs) {
         if (this == &rhs) { // self assignment guard
             return *this;
+        }
+
+        // close previous database if connection exist
+        if (*db) {
+            sqlite3_close(*db);
+        }
+        if (*err_msg) {
+            sqlite3_free(*err_msg);
         }
 
         // copy shared_pointers
@@ -97,6 +125,7 @@ public:
         this->result = rhs.result;
         this->column_name = rhs.column_name;
         this->exec_lock = rhs.exec_lock;
+        this->error_no = rhs.error_no;
 
         return *this;
     }
@@ -119,22 +148,26 @@ public:
      * @return 0 upon success, 1 upon failure
      */
     int open(std::string &db_name) {
-        if (*db) { // can only bind to 1 database
-            error_no = 2;
-            return 1;
-        } else {
-            int rc = sqlite3_open(db_name.c_str(), db.get());
-
-            if (rc != SQLITE_OK) { // check for error
-                error_no = 1; // set error code
-
-                sqlite3_close(*db);
-                return 1;
-            }
-
-            start_transaction();
-            return 0; // all good
+        // close previous connection if needed
+        if (*db) {
+            sqlite3_close(*db);
         }
+        if (*err_msg) {
+            sqlite3_free(*err_msg);
+        }
+
+        // open connection
+        int rc = sqlite3_open(db_name.c_str(), db.get());
+
+        if (rc != SQLITE_OK) { // check for error
+            error_no = OPEN_ERROR; // set error code
+
+            sqlite3_close(*db);
+            return 1;
+        }
+
+        start_transaction();
+        return 0; // all good
     }
 
     /**
@@ -147,7 +180,7 @@ public:
             // copy error message and free memory
             err_msg_str = std::string(*err_msg);
             sqlite3_free(*err_msg);
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             return 1;
         }
@@ -165,7 +198,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -176,7 +209,7 @@ public:
         try {
             prepared_query = query.bind().bound_query;
         } catch (std::out_of_range &e) {
-            error_no = 3;
+            error_no = QUERY_BINDING_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -190,10 +223,15 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
-            error_no = 126;
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -214,7 +252,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -228,10 +266,15 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
-            error_no = 126;
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -252,7 +295,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -266,10 +309,15 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query, &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
-            error_no = 126;
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -284,7 +332,7 @@ public:
      * Return the a copy of the column names for the result of the last query
      * @return shared pointer pointing to a copy of the column name
      */
-    std::shared_ptr<SQLITE_ROW_VECTOR> copy_column_names() {
+    std::shared_ptr<SQLITE_ROW_VECTOR> copy_column_names() const {
         exec_lock->lock(); // lock exec
 
         // make copy of result
@@ -300,7 +348,7 @@ public:
      * Get the number of col returned
      * @return number of col
      */
-    int get_result_col_count() {
+    int get_result_col_count() const {
         return result->at(0).size();
     }
 
@@ -308,7 +356,7 @@ public:
      * Get the number of row returned
      * @return number of row
      */
-    int get_result_row_count() {
+    int get_result_row_count() const {
         return result->size();
     }
 
@@ -316,7 +364,7 @@ public:
      * Return the a copy of the result of the last query
      * @return shared pointer pointing to a copy of the result
      */
-    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> copy_result() {
+    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> copy_result() const {
         exec_lock->lock(); // lock exec
 
         // make copy of result
@@ -334,14 +382,15 @@ public:
      * Return the result of a query
      * @return pointer to
      */
-    const std::vector<SQLITE_ROW_VECTOR> *get_result() {
+    [[deprecated]]
+    const std::vector<SQLITE_ROW_VECTOR> *get_result() const {
         return result.get();
     }
 
     /**
      * Print out result of a query
      */
-    void print_result() {
+    void print_result() const {
         // copy result and column names
         auto column_name_copy = copy_column_names();
         auto result_copy = copy_result();
@@ -367,36 +416,35 @@ public:
      * Get sqlite3 pointer, allowing user to expand the functions of SQLite
      * @return pointer to db
      */
-    const sqlite3 *get_db() {
+    const sqlite3 *get_db() const {
         return *db;
     }
 
     /**
      * Read the class wide error_no and print parsed error to std::cerr
      */
-    void perror() const {
+    void perror() {
         switch (error_no) {
-            case 0:
+            case NO_ERROR:
                 break;
-            case 1:
+            case OPEN_ERROR:
                 std::cerr << "SQLITE DATABASE OPEN FAILURE\n";
                 break;
-            case 2:
+            case OVERRIDE_ERROR:
                 std::cerr << "SQLITE DATABASE ALREADY OPENED, CREATE NEW OBJECT FOR NEW DATABASE\n";
                 break;
-            case 3:
+            case QUERY_BINDING_ERROR:
                 std::cerr << "Query Binding Failed\n";
                 break;
-            case 4:
+            case UNINITIALIZED_ERROR:
                 std::cerr << "No database connected\n";
                 break;
-            case 126:
+            case EXECUTION_ERROR:
                 std::cerr << err_msg_str << std::endl;
                 break;
-            case 127:
-                std::cerr << *err_msg << std::endl;
-                break;
         }
+
+        error_no = NO_ERROR;
     }
 
     /**
@@ -409,7 +457,8 @@ public:
      */
     int add_function(const std::string &name, int argc, void (*lambda)(sqlite3_context *, int, sqlite3_value **)) {
         // add function to database
-        int rc = sqlite3_create_function(*db, name.c_str(),
+        int rc = sqlite3_create_function(*db,
+                                         name.c_str(),
                                          argc, SQLITE_UTF8,
                                          nullptr,
                                          lambda,
@@ -418,7 +467,7 @@ public:
 
         // check success
         if (rc != SQLITE_OK) {
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
             err_msg_str = sqlite3_errmsg(*db);
             return 1;
         }
@@ -437,7 +486,7 @@ private:
             // copy error message and free memory
             err_msg_str = std::string(*err_msg);
             sqlite3_free(*err_msg);
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             return 1;
         }
@@ -475,7 +524,7 @@ private:
     }
 
 public:
-    char error_no; // class wide error code
+    char error_no{}; // class wide error code
 
 private:
     // sqlite objects
