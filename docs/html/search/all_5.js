@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['get_5fdb_8',['get_db',['../class_s_q_l_i_t_e3.html#a94e79ef42b3580892e00341626605f82',1,'SQLITE3']]],
-  ['get_5fresult_9',['get_result',['../class_s_q_l_i_t_e3.html#a2304a4917a283fe10c54a8a9a0ef66e5',1,'SQLITE3']]],
-  ['get_5fresult_5fcol_5fcount_10',['get_result_col_count',['../class_s_q_l_i_t_e3.html#a55d97235b11299d15fd95e33a9662c18',1,'SQLITE3']]],
-  ['get_5fresult_5frow_5fcount_11',['get_result_row_count',['../class_s_q_l_i_t_e3.html#acdf2da094d4d762aa80f8e9d4cdc86fa',1,'SQLITE3']]]
+  ['get_5fdb_8',['get_db',['../class_s_q_l_i_t_e3.html#afc4210a48a38aa197874bba4ca7f2159',1,'SQLITE3']]],
+  ['get_5fresult_9',['get_result',['../class_s_q_l_i_t_e3.html#ae8156bf4764ca8dfd74a279d318de6d0',1,'SQLITE3']]],
+  ['get_5fresult_5fcol_5fcount_10',['get_result_col_count',['../class_s_q_l_i_t_e3.html#af1f6afa229527ebf23f62438e82bb555',1,'SQLITE3']]],
+  ['get_5fresult_5frow_5fcount_11',['get_result_row_count',['../class_s_q_l_i_t_e3.html#af16aa8c98b022991f31bde34491375f2',1,'SQLITE3']]]
 ];
