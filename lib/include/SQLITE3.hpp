@@ -31,6 +31,8 @@
 
 #include "SQLITE3_QUERY.hpp"
 
+enum {NO_ERROR, OPEN_ERROR, OVERRIDE_ERROR, QUERY_BINDING_ERROR, UNINITIALIZED_ERROR, EXECUTION_ERROR};
+
 typedef std::vector<std::string> SQLITE_ROW_VECTOR;
 
 /**
@@ -59,7 +61,7 @@ public:
         if (!db_name.empty()) {
             int rc = sqlite3_open(db_name.c_str(), db.get());
             if (rc != SQLITE_OK) { // check for error
-                error_no = 1; // set error code
+                error_no = OPEN_ERROR; // set error code
 
                 sqlite3_close(*db);
                 throw std::runtime_error("Unable to open database");
@@ -137,22 +139,26 @@ public:
      * @return 0 upon success, 1 upon failure
      */
     int open(std::string &db_name) {
-        if (*db) { // can only bind to 1 database
-            error_no = 2;
-            return 1;
-        } else {
-            int rc = sqlite3_open(db_name.c_str(), db.get());
-
-            if (rc != SQLITE_OK) { // check for error
-                error_no = 1; // set error code
-
-                sqlite3_close(*db);
-                return 1;
-            }
-
-            start_transaction();
-            return 0; // all good
+        // close previous connection if needed
+        if (*db) {
+            sqlite3_close(*db);
         }
+        if (*err_msg) {
+            sqlite3_free(*err_msg);
+        }
+
+        // open connection
+        int rc = sqlite3_open(db_name.c_str(), db.get());
+
+        if (rc != SQLITE_OK) { // check for error
+            error_no = OPEN_ERROR; // set error code
+
+            sqlite3_close(*db);
+            return 1;
+        }
+
+        start_transaction();
+        return 0; // all good
     }
 
     /**
@@ -165,7 +171,7 @@ public:
             // copy error message and free memory
             err_msg_str = std::string(*err_msg);
             sqlite3_free(*err_msg);
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             return 1;
         }
@@ -183,7 +189,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -194,7 +200,7 @@ public:
         try {
             prepared_query = query.bind().bound_query;
         } catch (std::out_of_range &e) {
-            error_no = 3;
+            error_no = QUERY_BINDING_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -216,7 +222,7 @@ public:
                 err_msg_str = std::string(sqlite3_errmsg(*db));
             }
 
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -237,7 +243,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -259,7 +265,7 @@ public:
                 err_msg_str = std::string(sqlite3_errmsg(*db));
             }
 
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -280,7 +286,7 @@ public:
 
         // check if database connection is open
         if (!*db) {
-            error_no = 4;
+            error_no = UNINITIALIZED_ERROR;
             exec_lock->unlock(); // unlock exec
 
             return 1;
@@ -302,7 +308,7 @@ public:
                 err_msg_str = std::string(sqlite3_errmsg(*db));
             }
 
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             exec_lock->unlock(); // unlock exec
 
@@ -408,29 +414,28 @@ public:
     /**
      * Read the class wide error_no and print parsed error to std::cerr
      */
-    void perror() const {
+    void perror() {
         switch (error_no) {
-            case 0:
+            case NO_ERROR:
                 break;
-            case 1:
+            case OPEN_ERROR:
                 std::cerr << "SQLITE DATABASE OPEN FAILURE\n";
                 break;
-            case 2:
+            case OVERRIDE_ERROR:
                 std::cerr << "SQLITE DATABASE ALREADY OPENED, CREATE NEW OBJECT FOR NEW DATABASE\n";
                 break;
-            case 3:
+            case QUERY_BINDING_ERROR:
                 std::cerr << "Query Binding Failed\n";
                 break;
-            case 4:
+            case UNINITIALIZED_ERROR:
                 std::cerr << "No database connected\n";
                 break;
-            case 126:
+            case EXECUTION_ERROR:
                 std::cerr << err_msg_str << std::endl;
                 break;
-            case 127:
-                std::cerr << *err_msg << std::endl;
-                break;
         }
+
+        error_no = NO_ERROR;
     }
 
     /**
@@ -453,7 +458,7 @@ public:
 
         // check success
         if (rc != SQLITE_OK) {
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
             err_msg_str = sqlite3_errmsg(*db);
             return 1;
         }
@@ -472,7 +477,7 @@ private:
             // copy error message and free memory
             err_msg_str = std::string(*err_msg);
             sqlite3_free(*err_msg);
-            error_no = 126;
+            error_no = EXECUTION_ERROR;
 
             return 1;
         }
