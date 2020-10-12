@@ -78,16 +78,33 @@ public:
     }
 
     /**
-     * Non-construction-copyable
+     * copy construction
      */
-    SQLITE3(const SQLITE3 &) = delete;
+    SQLITE3(const SQLITE3 &rhs) {
+        // copy shared_pointers
+        this->db = rhs.db;
+        this->err_msg = rhs.err_msg;
+        this->err_msg_str = rhs.err_msg_str;
+        this->result = rhs.result;
+        this->column_name = rhs.column_name;
+        this->exec_lock = rhs.exec_lock;
+        this->error_no = rhs.error_no;
+    }
 
     /**
-     * copyable
+     * copy assign
      */
     SQLITE3 &operator=(const SQLITE3 &rhs) {
         if (this == &rhs) { // self assignment guard
             return *this;
+        }
+
+        // close previous database if connection exist
+        if (*db) {
+            sqlite3_close(*db);
+        }
+        if (*err_msg) {
+            sqlite3_free(*err_msg);
         }
 
         // copy shared_pointers
@@ -97,6 +114,7 @@ public:
         this->result = rhs.result;
         this->column_name = rhs.column_name;
         this->exec_lock = rhs.exec_lock;
+        this->error_no = rhs.error_no;
 
         return *this;
     }
@@ -190,9 +208,14 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, prepared_query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
             error_no = 126;
 
             exec_lock->unlock(); // unlock exec
@@ -228,9 +251,14 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query.c_str(), &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
             error_no = 126;
 
             exec_lock->unlock(); // unlock exec
@@ -266,9 +294,14 @@ public:
         auto data_pack = Callback_Data(column_name, result);
         int rc = sqlite3_exec(*db, query, &exec_callback, &data_pack, err_msg.get());
         if (rc != SQLITE_OK) { // check for error
-            // copy error message and free memory
-            err_msg_str = std::string(*err_msg);
-            sqlite3_free(*err_msg);
+            // copy error message or get error message
+            if (*err_msg) {
+                err_msg_str = std::string(*err_msg);
+                sqlite3_free(*err_msg);
+            } else {
+                err_msg_str = std::string(sqlite3_errmsg(*db));
+            }
+
             error_no = 126;
 
             exec_lock->unlock(); // unlock exec
@@ -284,7 +317,7 @@ public:
      * Return the a copy of the column names for the result of the last query
      * @return shared pointer pointing to a copy of the column name
      */
-    std::shared_ptr<SQLITE_ROW_VECTOR> copy_column_names() {
+    std::shared_ptr<SQLITE_ROW_VECTOR> copy_column_names() const {
         exec_lock->lock(); // lock exec
 
         // make copy of result
@@ -300,7 +333,7 @@ public:
      * Get the number of col returned
      * @return number of col
      */
-    int get_result_col_count() {
+    int get_result_col_count() const {
         return result->at(0).size();
     }
 
@@ -308,7 +341,7 @@ public:
      * Get the number of row returned
      * @return number of row
      */
-    int get_result_row_count() {
+    int get_result_row_count() const {
         return result->size();
     }
 
@@ -316,7 +349,7 @@ public:
      * Return the a copy of the result of the last query
      * @return shared pointer pointing to a copy of the result
      */
-    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> copy_result() {
+    std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> copy_result() const {
         exec_lock->lock(); // lock exec
 
         // make copy of result
@@ -334,14 +367,15 @@ public:
      * Return the result of a query
      * @return pointer to
      */
-    const std::vector<SQLITE_ROW_VECTOR> *get_result() {
+    [[deprecated]]
+    const std::vector<SQLITE_ROW_VECTOR> *get_result() const {
         return result.get();
     }
 
     /**
      * Print out result of a query
      */
-    void print_result() {
+    void print_result() const {
         // copy result and column names
         auto column_name_copy = copy_column_names();
         auto result_copy = copy_result();
@@ -367,7 +401,7 @@ public:
      * Get sqlite3 pointer, allowing user to expand the functions of SQLite
      * @return pointer to db
      */
-    const sqlite3 *get_db() {
+    const sqlite3 *get_db() const {
         return *db;
     }
 
@@ -409,7 +443,8 @@ public:
      */
     int add_function(const std::string &name, int argc, void (*lambda)(sqlite3_context *, int, sqlite3_value **)) {
         // add function to database
-        int rc = sqlite3_create_function(*db, name.c_str(),
+        int rc = sqlite3_create_function(*db,
+                                         name.c_str(),
                                          argc, SQLITE_UTF8,
                                          nullptr,
                                          lambda,
@@ -475,7 +510,7 @@ private:
     }
 
 public:
-    char error_no; // class wide error code
+    char error_no{}; // class wide error code
 
 private:
     // sqlite objects
