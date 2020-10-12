@@ -31,8 +31,14 @@
 
 #include "SQLITE3_QUERY.hpp"
 
+/**
+ * \private
+ */
 enum {NO_ERROR, OPEN_ERROR, OVERRIDE_ERROR, QUERY_BINDING_ERROR, UNINITIALIZED_ERROR, EXECUTION_ERROR};
 
+/**
+ * \private
+ */
 typedef std::vector<std::string> SQLITE_ROW_VECTOR;
 
 /**
@@ -48,6 +54,9 @@ struct Callback_Data {
     std::shared_ptr<std::vector<SQLITE_ROW_VECTOR>> rows;
 };
 
+/**
+ * Wrapper Library for sqlite3
+ */
 class SQLITE3 {
 public:
     /**
