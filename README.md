@@ -29,7 +29,7 @@ See [Doxygen](https://yuqian5.github.io/SQLitePlus/html/annotated.html)
 * Please keep in mind that this project aims to create a simple and intuitive interface for the SQLite3 C library, so please refrain from adding anything to the dependency tree.
     
 ### Feature Request
-Submite a feature request under the issues tab.
+Submit a feature request under the issues tab.
 
 ### Demo
 ```bash
