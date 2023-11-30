@@ -329,6 +329,14 @@ public:
     }
 
     /**
+     * Get the last row id inserted
+     * @return last row id
+    */
+    int get_last_insert_rowid() const {
+        return sqlite3_last_insert_rowid(*db);
+    }
+
+    /**
      * Return the a copy of the column names for the result of the last query
      * @return shared pointer pointing to a copy of the column name
      */
